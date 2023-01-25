@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+  height: 100vh;
+  background: no-repeat;
+  background-image: url(./assets/images/Bitmap.jpg);
+  background-size: contain;
+}
+.container {
+  width: 940px;
+  margin: 0 auto;
+}
