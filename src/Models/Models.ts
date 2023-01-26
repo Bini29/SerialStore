@@ -7,25 +7,26 @@ export interface Genre {
 }
 
 export interface IFilm {
-  kinopoiskId: number;
-  imdbId: string;
+  filmId: number;
   nameRu: string;
-  nameEn?: any;
-  nameOriginal: string;
+  nameEn: string;
+  type: string;
+  year: string;
+  description: string;
+  filmLength: string;
   countries: Country[];
   genres: Genre[];
-  ratingKinopoisk: number;
-  ratingImdb: number;
-  year: number;
-  type: string;
+  rating: string;
+  ratingVoteCount: number;
   posterUrl: string;
   posterUrlPreview: string;
 }
 
 export interface ServerResponse<T> {
-  total: number;
-  totalPages: number;
-  items: T[];
+  keyword: string;
+  pagesCount: number;
+  films: IFilm[];
+  searchFilmsCountResult: number;
 }
 export interface IFilmDetail {
   kinopoiskId: number;

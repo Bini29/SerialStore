@@ -7,9 +7,10 @@ import { UseActions } from "../../hooks/actions";
 import SerialSeasons from "../SerialSeasons/SerialSeasons";
 interface Iprops {
   kid: number;
+  season: number;
 }
 
-const CardSerial: FC<Iprops> = ({ kid }) => {
+const CardSerial: FC<Iprops> = ({ kid, season }) => {
   const [load, { isLoading, data }] = useLazyGetFilmQuery();
   const { removeFavorite } = UseActions();
 
@@ -19,15 +20,20 @@ const CardSerial: FC<Iprops> = ({ kid }) => {
   console.log(data);
 
   const removeFilm = (event: React.MouseEvent<HTMLButtonElement>) => {
-    removeFavorite(kid);
+    removeFavorite({ id: kid, season: 0 });
   };
 
   return (
     <div className={style.card}>
+      {data?.serial ? <span className={style.season}>{season}</span> : null}
       <button className={style.removeBtn} onClick={removeFilm}></button>
       <img src={data?.posterUrlPreview} alt="" />
-      <span>{data?.nameRu}</span>
-      {data?.kinopoiskId ? <SerialSeasons kid={data.kinopoiskId} /> : null}
+      <span className={style.title}>{data?.nameRu}</span>
+      <div className={style.sesonbtnwrapper}>
+        {data?.serial ? (
+          <SerialSeasons kid={data.kinopoiskId} defaultSeason={season} />
+        ) : null}
+      </div>
     </div>
   );
 };
