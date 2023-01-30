@@ -3,7 +3,7 @@
   height: 100vh;
   background: no-repeat;
   background-image: url(./assets/images/Bitmap.jpg);
-  background-size: contain;
+  background-size: 100% 30%;
 }
 .container {
   width: 940px;

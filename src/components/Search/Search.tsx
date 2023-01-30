@@ -9,13 +9,20 @@ import { useDebounce } from "../../hooks/debounce";
 const Search: FC = () => {
   const [value, setValue] = useState<string>("");
   const [open, setOpen] = useState(false);
+  const [heightList, setHeightList] = useState(0);
   const debounced = useDebounce(value);
+
   const { data, isLoading, error } = useSearchFilmsQuery(debounced, {
     skip: debounced.length < 3,
   });
 
   useEffect(() => {
     setOpen(debounced.length > 3 && data?.length! > 0);
+    if (data?.length!) {
+      setHeightList(data.length * 44);
+    } else {
+      setHeightList(0);
+    }
   }, [debounced, data]);
 
   const serchData = () => {
@@ -27,32 +34,40 @@ const Search: FC = () => {
       setOpen(!open);
     }
   };
-  console.log(debounced);
+  console.log(data);
 
   return (
     <div className={style.wrapper}>
-      <input
-        type="text"
-        value={value}
-        onChange={(e) => setValue(e.target.value)}
-        placeholder="Введите название"
-      />
-      <button className={style.btn} onClick={serchData}>
-        <img src={open ? closeIcon : searchIcon} alt="" />
-      </button>
-
-      <div className={[style.list, open ? style.listOpen : ""].join(" ")}>
-        {open
-          ? data?.map((i) => {
-              return <SearchCard key={i.filmId} {...i} />;
-            })
-          : null}
-      </div>
-      {data?.length! === 0 ? (
-        <div className={style.noneserch}>
-          <p> "Ничего не найдено"</p>
+      <div className={style.pabs}>
+        <div className={style.inputArea}>
+          <input
+            type="text"
+            value={value}
+            onChange={(e) => setValue(e.target.value)}
+            placeholder="Введите название"
+          />
+          <button className={style.btn} onClick={serchData}>
+            <img src={open ? closeIcon : searchIcon} alt="" />
+          </button>
         </div>
-      ) : null}
+        <div
+          className={[style.list, open ? style.listOpen : ""].join(" ")}
+          style={{
+            height: data === undefined ? "0px" : `${heightList}px`,
+          }}
+        >
+          {open
+            ? data?.map((i) => {
+                return <SearchCard key={i.filmId} {...i} />;
+              })
+            : null}
+        </div>
+        {data?.length! === 0 ? (
+          <div className={style.noneserch}>
+            <p> "Ничего не найдено"</p>
+          </div>
+        ) : null}
+      </div>
     </div>
   );
 };

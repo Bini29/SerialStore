@@ -1,17 +1,18 @@
 .card {
   padding: 0px 30px;
-  height: 50px;
+  height: 44px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   border-bottom: 1px solid #ccc;
+  transition: 0.5s;
 }
 .card span {
-  font-size: 20px;
+  font-size: 16px;
 }
 .card button {
-  width: 30px;
-  height: 30px;
+  width: 20px;
+  height: 20px;
   border: none;
   background-color: transparent;
   background-image: url(../../assets/images/icons8-plus-math-60.png);
