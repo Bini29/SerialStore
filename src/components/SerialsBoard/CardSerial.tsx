@@ -17,14 +17,14 @@ const CardSerial: FC<Iprops> = ({ kid, season }) => {
   useEffect(() => {
     load(kid);
   }, []);
-  console.log(data);
+  // console.log(data);
 
   const removeFilm = (event: React.MouseEvent<HTMLButtonElement>) => {
     removeFavorite({ id: kid, season: 0 });
   };
 
   return (
-    <div className={style.card}>
+    <div className={[style.card, "themeCard"].join(" ")}>
       {data?.serial ? <span className={style.season}>{season}</span> : null}
       <button className={style.removeBtn} onClick={removeFilm}></button>
       <img src={data?.posterUrlPreview} alt="" />

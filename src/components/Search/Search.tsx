@@ -18,6 +18,7 @@ const Search: FC = () => {
 
   useEffect(() => {
     setOpen(debounced.length > 3 && data?.length! > 0);
+
     if (data?.length!) {
       setHeightList(data.length * 44);
     } else {
@@ -34,7 +35,7 @@ const Search: FC = () => {
       setOpen(!open);
     }
   };
-  console.log(data);
+  // console.log(data);
 
   return (
     <div className={style.wrapper}>
@@ -51,7 +52,9 @@ const Search: FC = () => {
           </button>
         </div>
         <div
-          className={[style.list, open ? style.listOpen : ""].join(" ")}
+          className={[style.list, open ? style.listOpen : "", "themeList"].join(
+            " "
+          )}
           style={{
             height: data === undefined ? "0px" : `${heightList}px`,
           }}

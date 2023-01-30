@@ -1,25 +1,34 @@
 import { createSlice, PayloadAction } from "@reduxjs/toolkit";
-
+import firebase from "firebase/compat";
 const LS_F_KEY = "rfc";
 
 interface KinopoiskState {
-  favorites: { id: number; season: number }[];
+  favorites: { filmId: number; season: number; id: string }[];
+  user: any;
 }
+
 interface IPayload {
-  id: number;
+  filmId: number;
   season: number;
+  id: string;
 }
+
 const initialState: KinopoiskState = {
   favorites: JSON.parse(localStorage.getItem(LS_F_KEY) ?? "[]"),
+  user: {},
 };
 
 export const KinopoiskSlise = createSlice({
   name: "kinopoisk",
   initialState,
   reducers: {
+    setFilms(state, action: PayloadAction<IPayload | []>) {
+      //  state.favorites = action?.payload;
+    },
     addFavorite(state, action: PayloadAction<IPayload>) {
       state.favorites.push({
         id: action.payload.id,
+        filmId: action.payload.filmId,
         season: action.payload.season,
       });
       localStorage.setItem(LS_F_KEY, JSON.stringify(state.favorites));

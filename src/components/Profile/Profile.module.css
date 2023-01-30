@@ -1,0 +1,28 @@
+.userContainer {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+.userContainer img {
+  border-radius: 50%;
+}
+.auth {
+  padding: 10px 13px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+.avatar {
+  width: 40px;
+  height: 40px;
+}
+.authgoogle {
+  padding: 10px 13px;
+  background-color: white;
+  border: none;
+  border-radius: 5px;
+}
+.authgoogle img {
+  width: 20px;
+  height: auto;
+}

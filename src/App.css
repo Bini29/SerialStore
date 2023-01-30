@@ -2,10 +2,46 @@
   text-align: center;
   height: 100vh;
   background: no-repeat;
-  background-image: url(./assets/images/Bitmap.jpg);
-  background-size: 100% 30%;
+  transition: 0.5s;
+  background-size: 100% 295px;
 }
 .container {
   width: 940px;
   margin: 0 auto;
+}
+.AppDark {
+  background-image: url(./assets/images/dark.jpg);
+  background-color: #393a4b;
+  color: #c8cbe7;
+}
+.AppDark .themeCard {
+  background-color: #25273d;
+  border: 1px solid #ffffff4a;
+}
+.AppDark .themeList {
+  background-color: #25273d;
+}
+
+.AppDark input {
+  background-color: #25273d;
+}
+.AppDark .themeSerchCard {
+  border-bottom: 1px solid #cccccc57;
+}
+.AppDark .themeSerchCard button {
+  background-image: url(./assets/svg/plus-outline-iconLight.svg);
+}
+.AppLight {
+  background-image: url(./assets/images/light.jpg);
+  background-color: white;
+  color: #494c6b;
+}
+.AppLight .themeCard {
+  box-shadow: 0px 35px 50px -15px rgb(194 195 214 / 50%);
+}
+.AppLight .themeList {
+  background-color: #fff;
+}
+.AppLight .themeCard {
+  border: 1px solid #ccc;
 }

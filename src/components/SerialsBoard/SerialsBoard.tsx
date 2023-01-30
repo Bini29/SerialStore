@@ -1,4 +1,6 @@
-import React, { FC } from "react";
+import { collection, getDocs } from "firebase/firestore";
+import React, { FC, useEffect } from "react";
+import { db } from "../../firebase";
 import { useAppSelector } from "../../hooks/redux";
 import CardSerial from "./CardSerial";
 import style from "./SerialsBoard.module.css";
