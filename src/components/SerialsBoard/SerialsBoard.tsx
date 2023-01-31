@@ -1,7 +1,8 @@
 import { collection } from "firebase/firestore";
 import React, { FC, useEffect, useState } from "react";
+import { useAuthState } from "react-firebase-hooks/auth";
 import { useCollection } from "react-firebase-hooks/firestore";
-import { db } from "../../firebase";
+import { auth, db } from "../../firebase";
 import Loader from "../Loader/Loader";
 import CardSerial from "./CardSerial";
 import style from "./SerialsBoard.module.css";
@@ -19,10 +20,9 @@ interface IPropsFilm {
 }
 const SerialsBoard: FC<IProps> = ({ userUid }) => {
   const [items, setItems] = useState<IPropsFilm[]>([]);
+  const [user] = useAuthState(auth);
 
-  const [data, loading] = useCollection(
-    collection(db, "t9dNlGKwWsUPdlVTv5pLq2kDDGk2")
-  );
+  const [data, loading] = useCollection(collection(db, user ? user.uid : ""));
 
   useEffect(() => {
     if (data) {
