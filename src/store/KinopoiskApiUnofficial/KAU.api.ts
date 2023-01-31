@@ -19,7 +19,7 @@ export const KinopoiskUnofficialApi = createApi({
           keyword: seach,
         },
         headers: {
-          "X-API-KEY": process.env.REACT_APP_API_KEY2,
+          "X-API-KEY": "34f08f04-ad84-4aec-a0dd-bab9cc1bd380",
           "Content-Type": "application/json",
           "mode":"no-cors"
         },
@@ -30,7 +30,7 @@ export const KinopoiskUnofficialApi = createApi({
       query: (id: number) => ({
         url: `v2.2/films/${id}`,
         headers: {
-          "X-API-KEY": process.env.REACT_APP_API_KEY2,
+          "X-API-KEY": "34f08f04-ad84-4aec-a0dd-bab9cc1bd380",
           "Content-Type": "application/json",
           "mode":"no-cors"
         },
@@ -40,7 +40,7 @@ export const KinopoiskUnofficialApi = createApi({
       query: (id: number) => ({
         url: `v2.2/films/${id}/seasons`,
         headers: {
-          "X-API-KEY": process.env.REACT_APP_API_KEY2,
+          "X-API-KEY": "34f08f04-ad84-4aec-a0dd-bab9cc1bd380",
           "Content-Type": "application/json",
           "mode":"no-cors"
         },
