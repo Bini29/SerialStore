@@ -37,7 +37,6 @@ const Search: FC = () => {
       setOpen(!open);
     }
   };
-  console.log(user);
 
   if (!user) {
     return <div className={"themeListNoauth"}> Авторизируйтесь для начала</div>;
