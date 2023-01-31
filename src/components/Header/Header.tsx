@@ -6,10 +6,7 @@ import style from "./Header.module.css";
 import Profile from "../Profile/Profile";
 
 const Header: FC = () => {
-  const [theme, setTheme] = useState(false);
   const first = useContext(SerialsContext);
-  console.log(first);
-
   return (
     <div className={style.header}>
       <h1 className={style.title}>Save The Series</h1>

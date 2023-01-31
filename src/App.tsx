@@ -10,6 +10,10 @@ import { collection, addDoc, getDocs } from "firebase/firestore";
 
 import { db } from "./firebase";
 import { UseActions } from "./hooks/actions";
+import { getAuth } from "firebase/auth";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { useAppSelector } from "./hooks/redux";
+import { useCollectionData } from "react-firebase-hooks/firestore";
 
 interface IProps {
   filmId: number;
@@ -18,24 +22,10 @@ interface IProps {
 }
 
 function App() {
+  const auth = getAuth();
+  const [user, loading] = useAuthState(auth);
   const [theme, settheme] = useState("light");
-  const { setFilms } = UseActions();
-  useEffect(() => {
-    fetchPost();
-  }, []);
 
-  const fetchPost = async () => {
-    await getDocs(collection(db, "films")).then((querySnapshot) => {
-      const newData: IProps[] = querySnapshot.docs.map((doc) => ({
-        filmId: doc.data().filmId,
-        season: doc.data().season,
-        id: doc.id,
-      }));
-      console.log(newData);
-
-      setFilms(newData);
-    });
-  };
   return (
     <div
       className={["App", theme === "dark" ? "AppDark" : "AppLight"].join(" ")}
@@ -44,7 +34,7 @@ function App() {
         <SerialsContext.Provider value={{ theme: theme, onChange: settheme }}>
           <Header />
           <Search />
-          <SerialsBoard />
+          {user && <SerialsBoard userUid={user?.uid} />}
         </SerialsContext.Provider>
       </div>
     </div>

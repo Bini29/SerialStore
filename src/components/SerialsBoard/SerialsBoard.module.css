@@ -80,3 +80,6 @@
 .card:hover .sesonbtnwrapper {
   opacity: 1;
 }
+.lcontainer {
+  height: 300px;
+}

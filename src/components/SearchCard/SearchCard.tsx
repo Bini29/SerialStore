@@ -1,20 +1,24 @@
 import { addDoc, collection } from "firebase/firestore";
 import React, { FC } from "react";
-import { db } from "../../firebase";
-import { UseActions } from "../../hooks/actions";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth, db } from "../../firebase";
 import { IFilm } from "../../Models/Models";
 import style from "./SearchCard.module.css";
 
 const SearchCard: FC<IFilm> = (props) => {
-  const { addFavorite } = UseActions();
+  const [user] = useAuthState(auth);
 
   const saveSerial = async (event: React.MouseEvent<HTMLButtonElement>) => {
-    // addFavorite({ season: 0, filmId:props.filmId });
-    let newFilms = await addDoc(collection(db, "films"), {
-      filmId: props.filmId,
-      season: 0,
-    });
-    console.log(newFilms);
+    if (user) {
+      await addDoc(collection(db, user?.uid), {
+        filmId: props.filmId,
+        name: props.nameRu ? props.nameRu : props.nameEn,
+        poster: props.posterUrl,
+        season: 0,
+        seasonTotal: 0,
+        type: props.type,
+      });
+    }
   };
 
   return (

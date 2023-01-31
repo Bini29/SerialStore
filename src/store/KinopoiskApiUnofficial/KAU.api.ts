@@ -46,5 +46,9 @@ export const KinopoiskUnofficialApi = createApi({
   }),
 });
 
-export const { useSearchFilmsQuery, useLazyGetFilmQuery, useGetSeasonsQuery } =
-  KinopoiskUnofficialApi;
+export const {
+  useSearchFilmsQuery,
+  useLazyGetFilmQuery,
+  useGetSeasonsQuery,
+  useLazyGetSeasonsQuery,
+} = KinopoiskUnofficialApi;

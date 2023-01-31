@@ -5,6 +5,7 @@ const LS_F_KEY = "rfc";
 interface KinopoiskState {
   favorites: { filmId: number; season: number; id: string }[];
   user: any;
+  login: boolean;
 }
 
 interface IPayload {
@@ -14,16 +15,20 @@ interface IPayload {
 }
 
 const initialState: KinopoiskState = {
-  favorites: JSON.parse(localStorage.getItem(LS_F_KEY) ?? "[]"),
+  favorites: [],
   user: {},
+  login: false,
 };
 
 export const KinopoiskSlise = createSlice({
   name: "kinopoisk",
   initialState,
   reducers: {
-    setFilms(state, action: PayloadAction<IPayload | []>) {
-      //  state.favorites = action?.payload;
+    setLogin(state, action: PayloadAction<boolean>) {
+      state.login = action.payload;
+    },
+    setFilms(state, action: PayloadAction<IPayload[] | []>) {
+      state.favorites = action.payload;
     },
     addFavorite(state, action: PayloadAction<IPayload>) {
       state.favorites.push({

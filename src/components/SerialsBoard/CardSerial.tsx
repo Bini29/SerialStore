@@ -1,37 +1,44 @@
-import React, { FC, useEffect } from "react";
+import React, { FC } from "react";
 import style from "./SerialsBoard.module.css";
-import img from "../../assets/images/300x450.webp";
-import { useLazyGetFilmQuery } from "../../store/KinopoiskApiUnofficial/KAU.api";
-import { useAppSelector } from "../../hooks/redux";
-import { UseActions } from "../../hooks/actions";
 import SerialSeasons from "../SerialSeasons/SerialSeasons";
+import { doc, deleteDoc } from "firebase/firestore";
+import { auth, db } from "../../firebase";
+
+import { useAuthState } from "react-firebase-hooks/auth";
+
 interface Iprops {
-  kid: number;
+  name: string;
   season: number;
+  poster: string;
+  id: string;
+  filmId: number;
+  type: string;
 }
 
-const CardSerial: FC<Iprops> = ({ kid, season }) => {
-  const [load, { isLoading, data }] = useLazyGetFilmQuery();
-  const { removeFavorite } = UseActions();
+const CardSerial: FC<Iprops> = (props) => {
+  const [user] = useAuthState(auth);
 
-  useEffect(() => {
-    load(kid);
-  }, []);
-  // console.log(data);
-
-  const removeFilm = (event: React.MouseEvent<HTMLButtonElement>) => {
-    removeFavorite({ id: kid, season: 0 });
+  const removeFilm = async (event: React.MouseEvent<HTMLButtonElement>) => {
+    if (user) {
+      await deleteDoc(doc(db, user.uid, props.id));
+    }
   };
 
   return (
     <div className={[style.card, "themeCard"].join(" ")}>
-      {data?.serial ? <span className={style.season}>{season}</span> : null}
+      {props.type === "TV_SERIES" ? (
+        <span className={style.season}>{props.season}</span>
+      ) : null}
       <button className={style.removeBtn} onClick={removeFilm}></button>
-      <img src={data?.posterUrlPreview} alt="" />
-      <span className={style.title}>{data?.nameRu}</span>
+      <img src={props.poster} alt="" />
+      <span className={style.title}>{props.name}</span>
       <div className={style.sesonbtnwrapper}>
-        {data?.serial ? (
-          <SerialSeasons kid={data.kinopoiskId} defaultSeason={season} />
+        {props.type === "TV_SERIES" ? (
+          <SerialSeasons
+            id={props.id}
+            kid={props.filmId}
+            defaultSeason={props.season}
+          />
         ) : null}
       </div>
     </div>

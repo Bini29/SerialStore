@@ -1,28 +1,23 @@
 import React from "react";
-import { useAppSelector } from "../../hooks/redux";
 import style from "./Profile.module.css";
-import firebase from "firebase/compat/app";
-import { getAuth, signInWithPopup } from "firebase/auth";
-import { UseActions } from "../../hooks/actions";
+import { signInWithPopup, GoogleAuthProvider } from "firebase/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import googleSvg from "../../assets/svg/icons8-google.svg";
+import { auth } from "../../firebase";
+import Loader from "../Loader/Loader";
 
 const Profile = () => {
-  const auth = getAuth();
-  const { setUser } = UseActions();
-
   const [user, loading] = useAuthState(auth);
-  console.log(loading);
 
   const login = async () => {
-    const provider = new firebase.auth.GoogleAuthProvider();
-    const { user } = await signInWithPopup(auth, provider);
-    setUser(user as any);
+    const provider = new GoogleAuthProvider();
+    await signInWithPopup(auth, provider);
   };
 
   if (loading) {
-    return null;
+    return <Loader />;
   }
+
   return (
     <div className={style.userContainer}>
       {user ? (

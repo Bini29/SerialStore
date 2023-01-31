@@ -12,7 +12,7 @@ const Search: FC = () => {
   const [heightList, setHeightList] = useState(0);
   const debounced = useDebounce(value);
 
-  const { data, isLoading, error } = useSearchFilmsQuery(debounced, {
+  const { data } = useSearchFilmsQuery(debounced, {
     skip: debounced.length < 3,
   });
 
@@ -31,11 +31,9 @@ const Search: FC = () => {
       setOpen(!open);
       setValue("");
     } else {
-      // getFilms(value);
       setOpen(!open);
     }
   };
-  // console.log(data);
 
   return (
     <div className={style.wrapper}>
