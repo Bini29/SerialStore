@@ -21,6 +21,7 @@ export const KinopoiskUnofficialApi = createApi({
         headers: {
           "X-API-KEY": process.env.REACT_APP_API_KEY2,
           "Content-Type": "application/json",
+          "mode":"no-cors"
         },
       }),
       transformResponse: (response: ServerResponse<IFilm>) => response.films,
@@ -31,6 +32,7 @@ export const KinopoiskUnofficialApi = createApi({
         headers: {
           "X-API-KEY": process.env.REACT_APP_API_KEY2,
           "Content-Type": "application/json",
+          "mode":"no-cors"
         },
       }),
     }),
@@ -40,6 +42,7 @@ export const KinopoiskUnofficialApi = createApi({
         headers: {
           "X-API-KEY": process.env.REACT_APP_API_KEY2,
           "Content-Type": "application/json",
+          "mode":"no-cors"
         },
       }),
     }),
