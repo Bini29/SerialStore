@@ -16,6 +16,20 @@
   background-color: #393a4b;
   color: #c8cbe7;
 }
+.AppDark .profileTheme button {
+  background-color: #25273d;
+}
+.AppDark .themeListNoauth {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: #25273d;
+  color: white;
+  border-radius: 15px;
+  box-shadow: 0px 5px 8px 0px rgb(34 60 80 / 36%);
+  transition: 0.5s;
+}
 .AppDark .themeCard {
   background-color: #25273d;
   border: 1px solid #ffffff4a;
@@ -46,4 +60,15 @@
 }
 .AppLight .themeCard {
   border: 1px solid #ccc;
+}
+.AppLight .themeListNoauth {
+  width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  max-width: 600px;
+  background-color: white;
+  color: #25273d;
+  border-radius: 15px;
+  box-shadow: 0px 5px 8px 0px rgb(34 60 80 / 36%);
+  transition: 0.5s;
 }

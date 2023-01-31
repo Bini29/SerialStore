@@ -5,8 +5,11 @@ import closeIcon from "../../assets/svg/icons8-close.svg";
 import { useSearchFilmsQuery } from "../../store/KinopoiskApiUnofficial/KAU.api";
 import SearchCard from "../SearchCard/SearchCard";
 import { useDebounce } from "../../hooks/debounce";
+import { auth } from "../../firebase";
+import { useAuthState } from "react-firebase-hooks/auth";
 
 const Search: FC = () => {
+  const [user] = useAuthState(auth);
   const [value, setValue] = useState<string>("");
   const [open, setOpen] = useState(false);
   const [heightList, setHeightList] = useState(0);
@@ -34,7 +37,11 @@ const Search: FC = () => {
       setOpen(!open);
     }
   };
+  console.log(user);
 
+  if (!user) {
+    return <div className={"themeListNoauth"}> Авторизируйтесь для начала</div>;
+  }
   return (
     <div className={style.wrapper}>
       <div className={style.pabs}>

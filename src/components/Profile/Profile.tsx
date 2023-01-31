@@ -19,7 +19,7 @@ const Profile = () => {
   }
 
   return (
-    <div className={style.userContainer}>
+    <div className={[style.userContainer, "profileTheme"].join(" ")}>
       {user ? (
         <>
           <button className={style.auth} onClick={() => auth.signOut()}>
