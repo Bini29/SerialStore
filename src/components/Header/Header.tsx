@@ -9,7 +9,7 @@ const Header: FC = () => {
   const first = useContext(SerialsContext);
   return (
     <div className={style.header}>
-      <h1 className={style.title}>Save The Series</h1>
+      <h1 className={style.title}>Save Series And Movies</h1>
       <div className={style.btnContainer}>
         <Profile />
         <button
