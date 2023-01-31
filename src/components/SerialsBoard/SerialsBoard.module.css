@@ -83,3 +83,8 @@
 .lcontainer {
   height: 300px;
 }
+@media (max-width: 1000px) {
+  .board {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}

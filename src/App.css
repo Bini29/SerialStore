@@ -6,8 +6,10 @@
   background-size: 100% 295px;
 }
 .container {
-  width: 940px;
+  width: 100%;
+  max-width: 940px;
   margin: 0 auto;
+  padding: 0px 10px;
 }
 .AppDark {
   background-image: url(./assets/images/dark.jpg);
