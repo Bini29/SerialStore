@@ -1,4 +1,9 @@
 Проект реализован на React/ts/Firebase
+
+Авторизация по Google аккаунту
+Функционал, сохранение сериалов,фильмов для сериалов можно отмечать сезоны на котором остановились
+
+
 ![Иллюстрация к проекту](https://github.com/Bini29/SerialStore_react_ts_rtq-query/blob/master/src/assets/images/image.png?raw=true)
 ### `npm start`
 
